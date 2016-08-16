@@ -16,7 +16,7 @@ class NMatrix<T> {
 
 //Constructors & Initializers
 //--------------------------------------------------------------------------------
-  ///Constructor for an Nth Dimensional Matrix Construct.
+  ///Constructor for an nth Dimensional Matrix Construct.
   ///
   /// This Constructor takes in one parameter, that is the [dimensions] which is a list
   /// of integer representations of the sizes for each of the new dimensions. The length if
@@ -137,9 +137,8 @@ class NMatrix<T> {
   ///Getter for the sizes of each dimension in the matrix construct.
   ///
   /// Returns a list of sizes for each dimension in the matrix construct.
-  List getDimensionSizes() {
-    return this._dimensionSizes;
-  }
+  List get dimSizes => this._dimensionSizes;
+
 
   ///Sets the value at the Dimension address provided to the value of T type val.
   ///
@@ -181,11 +180,10 @@ class NMatrix<T> {
     }
   }
 
+
   ///Gets the "core" of the dimensional matrix construct.
   ///returns the core of the dimensional matrix construct.
-  List getNMatrix() {
-    return this._core;
-  }
+  List get matrix => this._core;
 //--------------------------------------------------------------------------------
 
   ///This function returns a String representation of the matrix construct.
