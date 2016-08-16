@@ -18,12 +18,13 @@ class NMatrix<T> {
 //--------------------------------------------------------------------------------
   ///Constructor for an Nth Dimensional Matrix Construct.
   ///
-  /// This Constructor takes in 2 main values, one for the number of [matrixDimensions] which is a list
-  /// of integer representations of the sizes for each of the new dimensions. And the second being [dimensions]
-  /// which is a list with the size of each dimension. The last parameter is a named optional parameter [initValue]
-  /// which is the initial value to set each value in the matrix construct to.
-  NMatrix(int matrixDimensions, List<int> dimensions, [T initValue = null]) {
-    this._matrixDimension = matrixDimensions;
+  /// This Constructor takes in one parameter, that is the [dimensions] which is a list
+  /// of integer representations of the sizes for each of the new dimensions. The length if
+  /// [dimensions] represents the NUMBER of dimensions the matrix construct has. The last
+  /// parameter is a named optional parameter [initValue] which is the initial value to set
+  /// each value in the matrix construct to.
+  NMatrix(List<int> dimensions, [T initValue = null]) {
+    this._matrixDimension = dimensions.length;
     this._dimensionSizes = dimensions;
     this._initValue = initValue;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
