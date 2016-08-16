@@ -1,0 +1,4 @@
+name: Constructs
+authors:
+- Kyle Ferguson <hanbrolo117@gmail.com>
+description: This lib is in progress and helps make data structures not in Dart availble for Dart developers.

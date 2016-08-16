@@ -1,5 +1,6 @@
 import 'dart:io';
 
+/// NMatrix class.
 class NMatrix<T> {
   ///List of the Sizes for each dimension on the Nth Dimensional Matrix.
   List<int> _dimensionSizes;
@@ -17,8 +18,10 @@ class NMatrix<T> {
 //--------------------------------------------------------------------------------
   ///Constructor for an Nth Dimensional Matrix Construct.
   ///
-  /// This Constructor takes in 2 main values, one for the number of dimensions,
-  /// and the second being a list with the size of each dimension.
+  /// This Constructor takes in 2 main values, one for the number of [matrixDimensions] which is a list
+  /// of integer representations of the sizes for each of the new dimensions. And the second being [dimensions]
+  /// which is a list with the size of each dimension. The last parameter is a named optional parameter [initValue]
+  /// which is the initial value to set each value in the matrix construct to.
   NMatrix(int matrixDimensions, List<int> dimensions, [T initValue = null]) {
     this._matrixDimension = matrixDimensions;
     this._dimensionSizes = dimensions;
@@ -28,9 +31,11 @@ class NMatrix<T> {
 
   ///Extrudes Matrix to n dimensions.
   ///
-  /// This function is critical to the initialization of the Nth Dimensional Matrix Construct.
-  /// It Recursively Constructs all n dimensions of the Matrix setting the value at each position
-  /// to the initalValue, of which unless specified otherwise as a named optional parameter, is by default null.
+  /// This function is critical to the initialization of the nth Dimensional Matrix Construct.
+  /// It Recursively Constructs all [matrixDim] dimensions of the Matrix setting the value at each position to this initialValue,
+  /// of which unless specified otherwise as a named optional parameter, is by default null., where
+  /// [currentDim] is the current depth of the recursive tree and each dimension k has a size equal to the value at
+  /// the kth index of [dimSizes]. Returns the newly created matrix construct.
   List _extrude(int currentDim, int matrixDim, List<int> dimSizes) {
     //BaseCase:
     if ((currentDim + 1) == matrixDim) {
@@ -56,7 +61,12 @@ class NMatrix<T> {
     //a return value of null to handle such a case.
     return null;
   }
-
+  ///Dimensional Expander algorithm.
+  ///
+  /// This algorithm essentially creates a new matrix construct with [newDimension] dimensions with each dimension k having a size
+  /// equal to the value at the kth index in [dimensionSizes] and sets the old values in the current matrix construct at their same
+  /// "dimensional address" in the new matrix construct. All remaining values in the new matrix construct are set to [initVal].
+  /// This algorithm then replaces the core of this object with the new matrix construct.
   void dimensionalExpansion(int newDimension, List<int> dimensionSizes, [T initVal = null]){
     if(dimensionSizes.length >= this._matrixDimension){
       bool validFlag = true;
@@ -86,10 +96,10 @@ class NMatrix<T> {
   ///Gets the T type value at the dimension address provided.
   ///
   /// Since this object can have n dimensions,  value's position in the Matrix is
-  /// referred to as it's dimension address. If the length of the dimension address
+  /// referred to as it's [dimensionAddress]. If the length of the [dimensionAddress]
   /// does not match the matrix's dimensions an error is thrown. If at each point in
   /// the dimension address, the value is out of bounds of that dimensions range, an
-  /// error is thrown.
+  /// error is thrown. Returns The value at the given dimensional address.
   T getAt(List<int> dimensionAddress) {
     List get = this._core;
     T returnVal = null;
@@ -127,8 +137,8 @@ class NMatrix<T> {
 
   ///Sets the value at the Dimension address provided to the value of T type val.
   ///
-  /// Since this object can have n dimensions,  value's position in the Matrix is
-  /// referred to as it's dimension address. If the length of the dimension address
+  /// Since this object can have n dimensions, a [val]'s position in the Matrix is
+  /// referred to as it's [dimensionAddress]. If the length of the [dimensionAddress]
   /// does not match the matrix's dimensions an error is thrown. If at each point in
   /// the dimension address, the value is out of bounds of that dimensions range, an
   /// error is thrown.
@@ -165,6 +175,8 @@ class NMatrix<T> {
     }
   }
 
+  ///Gets the "core" of the dimensional matrix construct.
+  ///returns the core of the dimensional matrix construct.
   List getNMatrix() {
     return this._core;
   }
