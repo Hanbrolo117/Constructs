@@ -26,7 +26,7 @@ class NMatrix<T> {
     this._matrixDimension = matrixDimensions;
     this._dimensionSizes = dimensions;
     this._initValue = initValue;
-    this._core = this._extrude(0,this._matrixDimension,this._dimensionSizes);
+    this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
   }
 
   ///Extrudes Matrix to n dimensions.
@@ -61,35 +61,33 @@ class NMatrix<T> {
     //a return value of null to handle such a case.
     return null;
   }
+
   ///Dimensional Expander algorithm.
   ///
   /// This algorithm essentially creates a new matrix construct with [newDimension] dimensions with each dimension k having a size
   /// equal to the value at the kth index in [dimensionSizes] and sets the old values in the current matrix construct at their same
   /// "dimensional address" in the new matrix construct. All remaining values in the new matrix construct are set to [initVal].
   /// This algorithm then replaces the core of this object with the new matrix construct.
-  void dimensionalExpansion(int newDimension, List<int> dimensionSizes, [T initVal = null]){
-    if(dimensionSizes.length >= this._matrixDimension){
+  void dimensionalExpansion(int newDimension, List<int> dimensionSizes,
+      [T initVal = null]) {
+    if (dimensionSizes.length >= this._matrixDimension) {
       bool validFlag = true;
       int k = 0;
-      while((k < this._dimensionSizes.length) && (validFlag)){
-        if(dimensionSizes[k] < this._dimensionSizes[k]){
+      while ((k < this._dimensionSizes.length) && (validFlag)) {
+        if (dimensionSizes[k] < this._dimensionSizes[k]) {
           validFlag = false;
         }
         k++;
       }
-      if(validFlag){
+      if (validFlag) {
         //If Expanded Dimensions are Valid, Port existing values to new expanded Matrix Construct:
         //TODO:: implement Matrix Construct Porting Here.
         this._initValue = initVal;
         List _newCore = this._extrude(0, newDimension, dimensionSizes);
       }
     }
-
   }
 //--------------------------------------------------------------------------------
-
-
-
 
 //Getter(s) & Setter(s)
 //--------------------------------------------------------------------------------
@@ -135,14 +133,12 @@ class NMatrix<T> {
     return returnVal;
   }
 
-
   ///Getter for the sizes of each dimension in the matrix construct.
   ///
   /// Returns a list of sizes for each dimension in the matrix construct.
-  List getDimensionSizes(){
+  List getDimensionSizes() {
     return this._dimensionSizes;
   }
-
 
   ///Sets the value at the Dimension address provided to the value of T type val.
   ///
@@ -191,11 +187,11 @@ class NMatrix<T> {
   }
 //--------------------------------------------------------------------------------
 
-@override
-///This function returns a String representation of the matrix construct.
-///
-/// It overrides Dart's Object toString function.
-  String toString(){
+  ///This function returns a String representation of the matrix construct.
+  ///
+  /// It overrides Dart's Object toString function.
+  @override
+  String toString() {
     return "{${this._recurseToString(0,this._core)}}";
   }
 
@@ -203,39 +199,33 @@ class NMatrix<T> {
   ///
   /// the [currentDim] specifies the height of the recursive tree and the [currentList] is the current list
   /// at the current dimension [currentDim] to traverse.
-  String _recurseToString(int currentDim, List currentList){
+  String _recurseToString(int currentDim, List currentList) {
     //Base Case
-    //stdout.writeln("Current Dimension: $currentDim");
-    if((currentDim+1) == this._matrixDimension){
-      //stdout.writeln("base Case met.");
+    if ((currentDim + 1) == this._matrixDimension) {
       String list = "";
-      for(int k = 0; k < currentList.length; k++){
+      for (int k = 0; k < currentList.length; k++) {
         list += "${currentList[k]}";
-        if((k+1) < currentList.length){
+        if ((k + 1) < currentList.length) {
           list += ",";
         }
       }
       return list;
-    }else{
+    } else {
       String matrixState = "";
-      //stdout.writeln("base Case NOT met.");
       ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
       for (int k = 0; k < currentList.length; k++) {
-        //stdout.writeln("Current Dimension: $currentDim, Current Point: $k.");
         int next = currentDim + 1;
-        if((currentDim+1) == this._matrixDimension){
+        if ((currentDim + 1) == this._matrixDimension) {
           matrixState += "${this._recurseToString(next, currentList[k])}";
-        }else {
-          matrixState +=
-          "{${this._recurseToString(next, currentList[k])}}";
+        } else {
+          matrixState += "{${this._recurseToString(next, currentList[k])}}";
         }
-        if((k+1)< currentList.length){
+        if ((k + 1) < currentList.length) {
           matrixState += ",";
         }
       }
       return matrixState;
     }
-
-  }//{{1,1,1},{1,1,1}}
+  }
 //TODO::Create Error Classes? for this Class...?
 }
