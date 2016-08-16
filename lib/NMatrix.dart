@@ -135,6 +135,15 @@ class NMatrix<T> {
     return returnVal;
   }
 
+
+  ///Getter for the sizes of each dimension in the matrix construct.
+  ///
+  /// Returns a list of sizes for each dimension in the matrix construct.
+  List getDimensionSizes(){
+    return this._dimensionSizes;
+  }
+
+
   ///Sets the value at the Dimension address provided to the value of T type val.
   ///
   /// Since this object can have n dimensions, a [val]'s position in the Matrix is
