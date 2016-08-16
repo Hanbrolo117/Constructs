@@ -25,7 +25,11 @@ main() {
     }
     stdout.writeln();
   }
-
+  stdout.writeln();
+  stdout.writeln(twoByThree.toString());
+  stdout.writeln();
+  stdout.writeln();
+  stdout.writeln(twoByThreeS.toString());
   stdout.writeln("In the source code the only change I had to make was the generic type and dimension sizes in the constructor.\n"
       "The remaining code stayed unchanged. This makes it very easy to create very different types of matrices with little work!");
 }

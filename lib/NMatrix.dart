@@ -191,6 +191,51 @@ class NMatrix<T> {
   }
 //--------------------------------------------------------------------------------
 
-//TODO::Implement Scalable toString Algorithm
+@override
+///This function returns a String representation of the matrix construct.
+///
+/// It overrides Dart's Object toString function.
+  String toString(){
+    return "{${this._recurseToString(0,this._core)}}";
+  }
+
+  ///This algorithm recursively traverses the matrix construct and builds a string representation of it.
+  ///
+  /// the [currentDim] specifies the height of the recursive tree and the [currentList] is the current list
+  /// at the current dimension [currentDim] to traverse.
+  String _recurseToString(int currentDim, List currentList){
+    //Base Case
+    //stdout.writeln("Current Dimension: $currentDim");
+    if((currentDim+1) == this._matrixDimension){
+      //stdout.writeln("base Case met.");
+      String list = "";
+      for(int k = 0; k < currentList.length; k++){
+        list += "${currentList[k]}";
+        if((k+1) < currentList.length){
+          list += ",";
+        }
+      }
+      return list;
+    }else{
+      String matrixState = "";
+      //stdout.writeln("base Case NOT met.");
+      ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
+      for (int k = 0; k < currentList.length; k++) {
+        //stdout.writeln("Current Dimension: $currentDim, Current Point: $k.");
+        int next = currentDim + 1;
+        if((currentDim+1) == this._matrixDimension){
+          matrixState += "${this._recurseToString(next, currentList[k])}";
+        }else {
+          matrixState +=
+          "{${this._recurseToString(next, currentList[k])}}";
+        }
+        if((k+1)< currentList.length){
+          matrixState += ",";
+        }
+      }
+      return matrixState;
+    }
+
+  }//{{1,1,1},{1,1,1}}
 //TODO::Create Error Classes? for this Class...?
 }
