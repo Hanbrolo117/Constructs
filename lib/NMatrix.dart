@@ -26,7 +26,7 @@ class NMatrix<T> {
     this._matrixDimension = matrixDimensions;
     this._dimensionSizes = dimensions;
     this._initValue = initValue;
-    this._core = this._extrude(0);
+    this._core = this._extrude(0,this._matrixDimension,this._dimensionSizes);
   }
 
   ///Extrudes Matrix to n dimensions.
