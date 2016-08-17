@@ -9,14 +9,17 @@ As of writing, this project's sole focus is on the nth dimensional matrix, the N
 
 <h3>Examples:</h3>
 <hr>
-    1. To make a one dimensional matrix (aka a list) with 5 rows:
-      NMatrix<int> oneDim = new NMatrix.dimensional([5]);
+1.To make a one dimensional matrix (aka a list) with 5 rows:
+      
+    NMatrix<int> oneDim = new NMatrix.dimensional([5]);
     
-    2. To instantiate it with an initial value other than the default null value:   
-      NMatrix<int> oneDim = new NMatrix.dimensional([5], 1);
+2.To instantiate it with an initial value other than the default null value:   
+      
+    NMatrix<int> oneDim = new NMatrix.dimensional([5], 1);
     
-    3. To travel to the 5th dimension we simply do:
-      NMatrix<int> fiveDim = new NMatrix.dimensional([5,2,5,2,5], 1);
+3.To travel to the 5th dimension we simply do:
+      
+    NMatrix<int> fiveDim = new NMatrix.dimensional([5,2,5,2,5], 1);
     
 <h2>Author</h2>
 <hr>
