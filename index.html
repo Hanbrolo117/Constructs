@@ -34,22 +34,27 @@
 
 <hr>
 
-<p>As of writing, this project's sole focus is on the nth dimensional matrix. However other data structures are being planned out for implementation!</p>
+<p>As of writing, this project's sole focus is on the nth dimensional matrix, the NMatrix class. However other data structures are being planned out for implementation!</p>
 
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+<h3>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples:</h3>
 
 <hr>
 
-<h4>
-<a id="step-1-depend-on-it" class="anchor" href="#step-1-depend-on-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 1: Depend on it</h4>
+<p>1.To make a one dimensional matrix (aka a list) with 5 rows:</p>
 
-<p>in your pubspec.yaml add  <b><br>dependencies:<br>dart_constructs:</b></p>
+<pre><code>NMatrix&lt;int&gt; oneDim = new NMatrix.dimensional([5]);
+</code></pre>
 
-<h4>
-<a id="step-2-get-the-goods" class="anchor" href="#step-2-get-the-goods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 2: Get the goods</h4>
+<p>2.To instantiate it with an initial value other than the default null value:   </p>
 
-<p>just type <b>pub get</b></p>
+<pre><code>NMatrix&lt;int&gt; oneDim = new NMatrix.dimensional([5], 1);
+</code></pre>
+
+<p>3.To travel to the 5th dimension we simply do:</p>
+
+<pre><code>NMatrix&lt;int&gt; fiveDim = new NMatrix.dimensional([5,2,5,2,5], 1);
+</code></pre>
 
 <h2>
 <a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
@@ -63,7 +68,7 @@
 
 <hr>
 
-<p>If you would like to contact me to get in touch, voice a concern, etc. shoot me an email at <a href="mailto:singularitysystemsdev@gmail.com">singularitysystemsdev@gmail.com</a>.</p>
+<p>If you would like to contact me to get in touch, voice a concern, etc. shoot me an email at <a href="mailto:hanbrolo117@gmail.com">hanbrolo117@gmail.com</a>.</p>
 
 <h2>
 <a id="special-thanks" class="anchor" href="#special-thanks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Special Thanks</h2>
