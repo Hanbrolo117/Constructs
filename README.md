@@ -6,6 +6,7 @@ The goal of the constructs project is to use the existing Dart data structures t
 <h2>So Far</h2>
 <hr>
 As of writing, this project's sole focus is on the nth dimensional matrix, the NMatrix class. However other data structures are being planned out for implementation!
+
 <h3>Examples:</h3>
 <hr>
     1. To make a one dimensional matrix (aka a list) with 5 rows:
