@@ -5,15 +5,25 @@ The goal of the constructs project is to use the existing Dart data structures t
 
 <h2>So Far</h2>
 <hr>
-As of writing, this project's sole focus is on the nth dimensional matrix. However other data structures are being planned out for implementation!
-
+As of writing, this project's sole focus is on the nth dimensional matrix, the NMatrix class. However other data structures are being planned out for implementation!
+<h3>Examples:</h3>
+<hr>
+    <p><b>-To make a one dimensional matrix (aka a list) with 5 rows:</b></p>
+    <p>NMatrix<int> oneDim = new NMatrix([5]);</p>
+    <br>
+    <p><b>To instantiate it with an initial value other than the default null value:</b></p>   
+    <p>NMatrix<int> oneDim = new NMatrix([5], 1);</p>
+    <br>
+    <p><b>-To travel to the 5th dimension we simply do:</b></p>
+    <p>NMatrix<int> fiveDim = new NMatrix([5,2,5,2,5], 1);</p>
+    
 <h2>Author</h2>
 <hr>
 <b>Kyle Ferguson</b> is the sole author of the dart constructs project.
 
 <h2>Contact</h2>
 <hr>
-If you would like to contact me to get in touch, voice a concern, etc. shoot me an email at singularitysystemsdev@gmail.com.
+If you would like to contact me to get in touch, voice a concern, etc. shoot me an email at hanbrolo117@gmail.com.
 
 <h2>Special Thanks</h2>
 <hr>

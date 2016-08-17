@@ -3,4 +3,4 @@ version: 1.0.0
 description: As of now, the constructs project has one data structure, that is the nth dimensional matrix construct. Say I want to make a 4 dimensional integer matrix, I would simply type NMatrix<int> nm4 = new NMatrix.dimensional([1,2,3,4],5); That's it!
 author: Kyle Ferguson <hanbrolo117@gmail.com>
 homepage: https://hanbrolo117.github.io/Dart-Constructs/
-publish_to: pub.dartlang.org
+publish_to: http://pub.dartlang.org
