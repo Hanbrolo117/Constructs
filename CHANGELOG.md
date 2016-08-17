@@ -1,6 +1,4 @@
 <h1>dart_construct ChangeLog</h1>
-<ul>
-<li>
 <h3>Version 1.1.1 Released</h3>
 <p>Fixed Changelog Style Error.</p>
 <h3>Version 1.1.0 Released</h3>
@@ -20,5 +18,4 @@ This is the initial release of dart_construct. The initial release contains the 
 Future changes may occur, for any errors or non-negligible performance enhancements. Also Future classes may be implemented alongside NMatrix.
 <b>Not all functions have been fully tested</b>
 </p>
-</li>
-</ul>
+
