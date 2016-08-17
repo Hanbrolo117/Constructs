@@ -1,18 +1,31 @@
 <h1>Constructs Project</h1>
 <h2>The Goal</h2>
-The goal of the constructs project is to use the existing Dart data structures to build more complex data structures (and thus constructs) that 
-are not in the Dart language. This will hopefully help out DartDevs who need extra data structures with it's own methods already implemented.
+<hr>
+The goal of the constructs project is to use the existing Dart data structures to build more complex data structures (and thus constructs) that are not in the Dart language. This will hopefully help out Dart Devs who need extra data structures with it's own methods already implemented.
 
+<h2>So Far</h2>
+<hr>
+As of writing, this project's sole focus is on the nth dimensional matrix. However other data structures are being planned out for implementation!
 
 <h2>Installation</h2>
-<h3>Step 1: Depend on it</h3>
-in your pubspec.yaml add <span style="background-color: #969696;">dependencies: <br> <b>dart_constructs:</b></span>
+<hr>
+<h4 style="padding-left:5em;">Step 1: Depend on it</h4>
+in your pubspec.yaml add <span style="background-color: #969696;"> <b><br>dependencies:<br>dart_constructs:</b></span>
 
-<h3>Step 1: Get the goods</h3>
-just type <span style="background-color: #969696;">$ pub get</span>
+<h4 style="padding-left:5em;">Step 2: Get the goods</h4>
+just type <span style="background-color: #969696;"><b>pub get</b></span>
+
+<h2>Author</h2>
+<hr>
+<b>Kyle Ferguson</b> is the sole author of the dart constructs project.
+
+<h2>Contact</h2>
+<hr>
+If you would like to contact me to get in touch, voice a concern, etc. shoot me an email at singularitysystemsdev@gmail.com.
 
 <h2>Special Thanks</h2>
-Thank you to cups of delicious coffee and bowls of cereal.
+<hr>
+Thank you to cups of delicious coffee &#9749; and bowls of cereal.
 
                   ***************
              *******           *******
