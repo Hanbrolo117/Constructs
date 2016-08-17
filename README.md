@@ -8,13 +8,13 @@ The goal of the constructs project is to use the existing Dart data structures t
 As of writing, this project's sole focus is on the nth dimensional matrix, the NMatrix class. However other data structures are being planned out for implementation!
 <h3>Examples:</h3>
 <hr>
-    *__To make a one dimensional matrix (aka a list) with 5 rows:__
+    *To make a one dimensional matrix (aka a list) with 5 rows:
       *NMatrix<int> oneDim = new NMatrix([5]);
     <br>
-    *__To instantiate it with an initial value other than the default null value:__   
+    *To instantiate it with an initial value other than the default null value:   
       *NMatrix<int> oneDim = new NMatrix([5], 1);
     <br>
-    *__To travel to the 5th dimension we simply do:__
+    *To travel to the 5th dimension we simply do:
       *NMatrix<int> fiveDim = new NMatrix([5,2,5,2,5], 1);
     
 <h2>Author</h2>
