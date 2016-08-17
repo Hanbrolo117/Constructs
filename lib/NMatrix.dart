@@ -354,7 +354,7 @@ class DimensionalMisMatchException implements Exception {
   ///The [cause] for throwing this exception.
   String cause;
 
-  ///A Dimensional Mismatch Error.
+  ///A Dimensional Mismatch Exception.
   ///
   /// This constructor conveys the [cause] of a new matrix's dimensions being less than the current matrix's dimensions,
   /// or the size of a given dimension being less than the others dimension.
