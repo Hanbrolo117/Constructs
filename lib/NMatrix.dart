@@ -14,8 +14,19 @@ class NMatrix<T> {
   ///This is the Generic Type value of which the matrix will initially be set to.
   T _initValue;
 
+  int _dataPointCount;
+
 //Constructors & Initializers
 //--------------------------------------------------------------------------------
+
+  NMatrix(){
+    this._matrixDimension = 2;
+    this._dimensionSizes = [10,10];
+    this._initValue = null;
+    this._dataPointCount = 0;
+    this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
+  }
+
   ///Constructor for an nth Dimensional Matrix Construct.
   ///
   /// This Constructor takes in one parameter, that is the [dimensions] which is a list
@@ -23,10 +34,11 @@ class NMatrix<T> {
   /// [dimensions] represents the NUMBER of dimensions the matrix construct has. The last
   /// parameter is a named optional parameter [initValue] which is the initial value to set
   /// each value in the matrix construct to.
-  NMatrix(List<int> dimensions, [T initValue = null]) {
+  NMatrix.dimensional(List<int> dimensions, [T initValue = null]) {
     this._matrixDimension = dimensions.length;
     this._dimensionSizes = dimensions;
     this._initValue = initValue;
+    this._dataPointCount = 0;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
   }
 
@@ -43,6 +55,8 @@ class NMatrix<T> {
       ///This is the last Dimension to Extrude the Matrix by.
       List<T> lastDim = new List<T>(dimSizes[currentDim]);
       for (int k = 0; k < dimSizes[currentDim]; k++) {
+        //Increment the number of dataPoints in the matrix by one:
+        this._dataPointCount += 1;
         //Inistantiate the last Dimension with the initial value of the Nth Dimensional Matrix.
         lastDim[k] = this._initValue;
       }
@@ -68,9 +82,10 @@ class NMatrix<T> {
   /// This algorithm essentially creates a new matrix construct with [newDimension] dimensions with each dimension k having a size
   /// equal to the value at the kth index in [dimensionSizes] and sets the old values in the current matrix construct at their same
   /// "dimensional address" in the new matrix construct. All remaining values in the new matrix construct are set to [initVal].
-  /// This algorithm then replaces the core of this object with the new matrix construct.
-  void dimensionalExpansion(int newDimension, List<int> dimensionSizes,
-      [T initVal = null]) {
+  /// This algorithm then replaces the core of this object with the new matrix construct. Returns true if Expansion was successful,
+  /// and false otherwise.
+  bool dimensionalExpansion(int newDimension, List<int> dimensionSizes,[T initVal = null]) {
+    bool isExpanded = false;
     if (dimensionSizes.length >= this._matrixDimension) {
       bool validFlag = true;
       int k = 0;
@@ -82,12 +97,43 @@ class NMatrix<T> {
       }
       if (validFlag) {
         //If Expanded Dimensions are Valid, Port existing values to new expanded Matrix Construct:
-        //TODO:: implement Matrix Construct Porting Here.
+        //Set the initValue to the new initial value, if one is provided. Otherwise set it to null.
+        //already is.
         this._initValue = initVal;
+        //Reset dataPointCount before running extrude for the new matrix construct.
+        this._dataPointCount = 0;
+        //Extrude the new matrix to the defined number of dimensions.
         List _newCore = this._extrude(0, newDimension, dimensionSizes);
+        //Port the old dataPoints in the current core to the new core.
+        this._matrixPort(0,this._core,_newCore);
+        //Set the new list of dimensionSizes:
+        this._dimensionSizes = dimensionSizes;
+        //Set to new number of dimensions:
+        this._matrixDimension = dimensionSizes.length;
+        //Finally, swap the cores:
+        this._core = _newCore;
+        isExpanded = true;
       }
     }
+    return isExpanded;
   }
+
+  void _matrixPort(int currentDim, List currentList,List newList){
+    //Base Case
+    if ((currentDim + 1) == this._matrixDimension) {
+      for (int k = 0; k < currentList.length; k++) {
+        //Port value in old matrix to the same relative position in the new matrix:
+        newList[k] = currentList[k];
+      }
+    }
+    else {
+      ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
+      for (int k = 0; k < currentList.length; k++) {
+        int next = currentDim + 1;
+        this._matrixPort(next, currentList[k],newList[k]);
+      }
+    }//End else
+  }//End matrixPort Algorithm.
 //--------------------------------------------------------------------------------
 
 //Getter(s) & Setter(s)

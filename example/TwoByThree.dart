@@ -2,7 +2,7 @@ import 'dart:io';
 import '../lib/NMatrix.dart';
 
 main() {
-  NMatrix<int> twoByThree = new NMatrix<int>([2, 3], 1);
+  NMatrix<int> twoByThree = new NMatrix.dimensional([2, 3], 1);
 
   stdout.writeln();
   stdout.writeln(
@@ -14,7 +14,7 @@ main() {
     stdout.writeln();
   }
 
-  NMatrix<String> twoByThreeS = new NMatrix<String>([3, 3], "Hey!");
+  NMatrix<String> twoByThreeS = new NMatrix.dimensional([3, 3], "Hey!");
 
   stdout.writeln();
   stdout.writeln(
