@@ -1,5 +1,6 @@
 <h1>dart_construct ChangeLog</h1>
 <h3>Version 1.1.1 Released</h3>
+<hr>
 <p>Fixed Changelog Style Error.</p>
 <h3>Version 1.1.0 Released</h3>
 <hr>
