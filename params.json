@@ -1,0 +1,6 @@
+{
+  "name": "Dart-constructs",
+  "tagline": "",
+  "body": "### The Dart Constructs Project\r\nThe goal of the constructs project is to use the existing Dart data structures to build more complex data structures (and thus constructs) that are not in the Dart language. This will hopefully help out Dart Devs who need extra data structures with it's own methods already implemented.\r\n\r\n### So Far\r\nAs of writing, this project's sole focus is on the nth dimensional matrix. However other data structures are being planned out for implementation!\r\n\r\n### Author\r\nKyle Ferguson is the Sole Author of the Dart Constructs project.\r\n\r\n### Contact\r\nIf you would like to contact me to get in touch, voice a concern, etc. shoot me an email at singularitysystemsdev@gmail.com.\r\n\r\n###Special Thanks\r\nFinally, I would like to thank cups of delicious coffee as well as plenty of bowls of cereal. &#9749;",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
