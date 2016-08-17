@@ -1,3 +1,5 @@
+import 'dart:io';
+
 /// NMatrix class.
 class NMatrix<T> {
   ///List of the Sizes for each dimension on the Nth Dimensional Matrix.
@@ -15,10 +17,6 @@ class NMatrix<T> {
   ///This keeps track of the number of data points which make up the matrix construct.
   int _dataPointCount;
 
-  ///This is a variable that helps in the linearization of the current matrix construct for porting
-  ///to the new matrix construct in the dimensionalExpansion Algorithm.
-  int _linearCount;
-
 //Constructors & Initializers
 //--------------------------------------------------------------------------------
 
@@ -32,7 +30,6 @@ class NMatrix<T> {
     this._initValue = null;
     this._dataPointCount = 0;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
-    this._linearCount = 0;
   }
 
   ///Constructor for an nth Dimensional Matrix Construct.
@@ -48,7 +45,6 @@ class NMatrix<T> {
     this._initValue = initValue;
     this._dataPointCount = 0;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
-    this._linearCount = 0;
   }
 
   ///Extrudes Matrix to n dimensions.
@@ -117,24 +113,27 @@ class NMatrix<T> {
         this._dataPointCount = 0;
 
         //Extrude the new matrix to the defined number of dimensions.
-        List _newCore = this._extrude(0, dimensionSizes.length, dimensionSizes);
+        NMatrix<T> newNM =
+            new NMatrix.dimensional(dimensionSizes, this._initValue);
 
-        //Linearize current Matrix core for porting it's data to the new matrix core:
-        List linearMatrix = this._linearize(0, this._core);
+        ///Used to fetch elements at this address in the matrixPort algorithm.
+        List dimensionalAdress = new List(this._dimensionSizes.length);
+        for (int i = 0; i < this._dimensionSizes.length; i++) {
+          for (int j = 0; j < this._dimensionSizes[i]; j++) {
+            dimensionalAdress[i] = 0;
+          }
+        }
+
+        //Port the old dataPoints in the current core to the new core.
+        this._matrixPort(0, newNM.matrix, newNM, dimensionalAdress);
 
         //Set the new list of dimensionSizes:
         this._dimensionSizes = dimensionSizes;
         //Set to new number of dimensions:
         this._matrixDimension = dimensionSizes.length;
 
-        //Port the old dataPoints in the current core to the new core.
-        this._matrixPort(0, _newCore, linearMatrix);
-
-        //Reset LinearCount for next expansion use.
-        this._linearCount = 0;
-
         //Finally, swap the cores:
-        this._core = _newCore;
+        this._core = newNM.matrix;
 
         //Notify flag:
         isExpanded = true;
@@ -143,51 +142,44 @@ class NMatrix<T> {
     return isExpanded;
   }
 
-  ///This algorithm linearizes the matrix construct.
-  ///
-  ///It essentially collects all of the data points in the nth dimensional matrix construct into one linear list.
-  ///Returns a list of all data points in the matrix construct.
-  List _linearize(int currentDim, List currentList) {
-    //Base Case
-    if ((currentDim + 1) == this._matrixDimension) {
-      List<T> lst = new List();
-      for (int k = 0; k < currentList.length; k++) {
-        //Port value in old matrix to the same relative position in the new matrix:
-        lst.add(currentList[k]);
-      }
-      return lst;
-    } else {
-      List linearMatrix = new List();
-
-      ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
-      for (int k = 0; k < currentList.length; k++) {
-        int next = currentDim + 1;
-        linearMatrix.addAll(this._linearize(next, currentList[k]));
-      }
-      return linearMatrix;
-    } //End else
-  } //End matrixPort Algorithm.
-
   ///This Algorithm ports the old matrix values to the new matrix.
   ///
-  /// It ports each data point in the old matrix construct to the same relative position/dimensional address
-  /// in the new matrix construct.
-  void _matrixPort(int currentDim, List newList, List linearMatrix) {
+  /// It ports each data point in the old matrix construct to the same relative position using the [currentAddress]
+  /// into the [newNM] matrix at it's current [newList]. The current [newList], or dimension is determined by the [currentDim],
+  /// which also indicates what level of the recursive tree the algorithm is in.
+  void _matrixPort(
+      int currentDim, List newList, NMatrix newNM, List currentAddress) {
     //Base Case
-    if (this._linearCount >= linearMatrix.length) {
-      return;
-    } else if ((currentDim + 1) == this._matrixDimension) {
-      for (int k = 0; k < newList.length; k++) {
+    if ((currentDim + 1) == this._matrixDimension) {
+      ///Create the equivalent address for the new matrix construct:
+      List newAddr = new List(newNM.matrixDimensions);
+
+      for (int k = 0; k < this._dimensionSizes[currentDim]; k++) {
+        //updateAddress:
+        currentAddress[currentDim] = k;
         //Port value in old matrix to the same relative position in the new matrix:
-        newList[k] = linearMatrix[this._linearCount];
-        this._linearCount += 1;
+        if (currentDim >= currentAddress.length) {
+          return;
+        }
+        //Convert old address to new address:
+        for (int i = 0; i < newAddr.length; i++) {
+          if (i < currentAddress.length) {
+            newAddr[i] = currentAddress[i];
+          } else {
+            newAddr[i] = 0;
+          }
+        }
+        //Port value:
+        newNM.set(newAddr, this.getAt(currentAddress));
       }
     } else {
       ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
       for (int k = 0; k < newList.length; k++) {
         int next = currentDim + 1;
-        this._matrixPort(next, newList[k], linearMatrix);
-        if (this._linearCount >= linearMatrix.length) {
+        //Update Current address:
+        currentAddress[currentDim] = k;
+        this._matrixPort(next, newList[k], newNM, currentAddress);
+        if (currentDim >= currentAddress.length) {
           return;
         }
       }
