@@ -28,9 +28,9 @@ class NMatrix<T> {
   ///
   /// This constructor creates a 10x10 matrix with an initial value of null.
   /// Don't worry you can always expand the size of a matrix construct.
-  NMatrix(){
+  NMatrix() {
     this._matrixDimension = 2;
-    this._dimensionSizes = [10,10];
+    this._dimensionSizes = [10, 10];
     this._initValue = null;
     this._dataPointCount = 0;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
@@ -98,7 +98,7 @@ class NMatrix<T> {
   /// Also, for each new dimension to the number of dimensions of the current matrix construct, each dimensions Size can only be >= each of the
   /// current matrix dimension's sizes. This ensures there is no "shrinking" effect which would cause a loss in data of the current matrix.
   /// For instance, {2,2,2} => {2,3,2} | {2,2,2,3} | {2,2,2,1} is valid, but {2,2,2} => {1} | {2,2,1,2} is invalid.
-  bool dimensionalExpansion(List<int> dimensionSizes,[T initVal = null]) {
+  bool dimensionalExpansion(List<int> dimensionSizes, [T initVal = null]) {
     bool isExpanded = false;
     if (dimensionSizes.length >= this._matrixDimension) {
       bool validFlag = true;
@@ -122,7 +122,7 @@ class NMatrix<T> {
         List _newCore = this._extrude(0, dimensionSizes.length, dimensionSizes);
 
         //Linearize current Matrix core for porting it's data to the new matrix core:
-        List linearMatrix = this._linearize(0,this._core);
+        List linearMatrix = this._linearize(0, this._core);
 
         //Set the new list of dimensionSizes:
         this._dimensionSizes = dimensionSizes;
@@ -145,7 +145,7 @@ class NMatrix<T> {
     return isExpanded;
   }
 
-  List _linearize(int currentDim, List currentList){
+  List _linearize(int currentDim, List currentList) {
     //Base Case
     if ((currentDim + 1) == this._matrixDimension) {
       List<T> lst = new List();
@@ -154,41 +154,39 @@ class NMatrix<T> {
         lst.add(currentList[k]);
       }
       return lst;
-    }
-    else {
+    } else {
       List linearMatrix = new List();
+
       ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
       for (int k = 0; k < currentList.length; k++) {
         int next = currentDim + 1;
         linearMatrix.addAll(this._linearize(next, currentList[k]));
       }
       return linearMatrix;
-    }//End else
-  }//End matrixPort Algorithm.
+    } //End else
+  } //End matrixPort Algorithm.
 
-  void _matrixPort(int currentDim, List newList,List linearMatrix){
+  void _matrixPort(int currentDim, List newList, List linearMatrix) {
     //Base Case
-    if(this._linearCount >= linearMatrix.length){
+    if (this._linearCount >= linearMatrix.length) {
       return;
-    }
-    else if ((currentDim + 1) == this._matrixDimension) {
+    } else if ((currentDim + 1) == this._matrixDimension) {
       for (int k = 0; k < newList.length; k++) {
         //Port value in old matrix to the same relative position in the new matrix:
         newList[k] = linearMatrix[this._linearCount];
         this._linearCount += 1;
       }
-    }
-    else {
+    } else {
       ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
       for (int k = 0; k < newList.length; k++) {
         int next = currentDim + 1;
-        this._matrixPort(next, newList[k],linearMatrix);
-        if(this._linearCount >= linearMatrix.length){
+        this._matrixPort(next, newList[k], linearMatrix);
+        if (this._linearCount >= linearMatrix.length) {
           return;
         }
       }
-    }//End else
-  }//End matrixPort Algorithm.
+    } //End else
+  } //End matrixPort Algorithm.
 //--------------------------------------------------------------------------------
 
 //Getter(s) & Setter(s)
@@ -200,13 +198,11 @@ class NMatrix<T> {
   /// this matrix construct was instantiated to.
   T get initialValue => this._initValue;
 
-
   ///Getter for the number of dimensions.
   ///
   /// This function returns [_matrixDimension] which is the number of dimensions
   /// this matrix has. For instance, a matrix with 3 dimensions would be a cube.
   int get matrixDimensions => this._matrixDimension;
-
 
   ///Getter for the number of data points.
   ///
@@ -215,18 +211,14 @@ class NMatrix<T> {
   /// 27 data points, as 3*3*3 = 27.
   int get dataPointCount => this._dataPointCount;
 
-
   ///Getter for the sizes of each dimension in the matrix construct.
   ///
   /// Returns a list of sizes for each dimension in the matrix construct.
   List get dimSizes => this._dimensionSizes;
 
-
-
   ///Gets the "core" of the dimensional matrix construct.
   ///returns the core of the dimensional matrix construct.
   List get matrix => this._core;
-
 
   ///Gets the T type value at the dimension address provided.
   ///
@@ -270,8 +262,6 @@ class NMatrix<T> {
     return returnVal;
   }
 
-
-
   ///Sets the value at the Dimension address provided to the value of T type val.
   ///
   /// Since this object can have n dimensions, a [val]'s position in the Matrix is
@@ -312,8 +302,6 @@ class NMatrix<T> {
     }
   }
 
-
-
 //--------------------------------------------------------------------------------
 
   ///This function returns a String representation of the matrix construct.
@@ -341,6 +329,7 @@ class NMatrix<T> {
       return list;
     } else {
       String matrixState = "";
+
       ///the nth dimensional list and set each dimension point to the fully extruded dimensional List returned by the extrude function.
       for (int k = 0; k < currentList.length; k++) {
         int next = currentDim + 1;
