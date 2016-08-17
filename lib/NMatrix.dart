@@ -145,6 +145,10 @@ class NMatrix<T> {
     return isExpanded;
   }
 
+  ///This algorithm linearizes the matrix construct.
+  ///
+  ///It essentially collects all of the data points in the nth dimensional matrix construct into one linear list.
+  ///Returns a list of all data points in the matrix construct.
   List _linearize(int currentDim, List currentList) {
     //Base Case
     if ((currentDim + 1) == this._matrixDimension) {
@@ -166,6 +170,10 @@ class NMatrix<T> {
     } //End else
   } //End matrixPort Algorithm.
 
+  ///This Algorithm ports the old matrix values to the new matrix.
+  ///
+  /// It ports each data point in the old matrix construct to the same relative position/dimensional address
+  /// in the new matrix construct.
   void _matrixPort(int currentDim, List newList, List linearMatrix) {
     //Base Case
     if (this._linearCount >= linearMatrix.length) {
@@ -283,23 +291,16 @@ class NMatrix<T> {
         } else {
           ///Calcuate how far out of bounds in Dimension k the value is.
           int outOfBounds = dimensionAddress[k] - get.length;
-          //Print Error to console.
-          stderr.writeln(
-              "ERROR: Dimension MisMatch at Dimension $k of the NMatrix. Out of Bounds by: $outOfBounds.");
-          //Terminate Program...?
-          exit(0);
           //TODO::Implement Dimension MisMatch at Dimension k Error here.
+          throw new DimensionalMisMatchException(
+              "ERROR: Dimension MisMatch at Dimension $k of the NMatrix. Out of Bounds by: $outOfBounds.");
         }
       }
     } else {
       ///Gets the difference in D
       int dimDiff = dimensionAddress.length - this._matrixDimension;
-      //Print Error to console.
-      stderr.writeln(
+      throw new DimensionalMisMatchException(
           "ERROR: Dimension MisMatch. NMatrix object does not have same number dimensions as the dimensionsAddress provided. Dimension Dif: $dimDiff.");
-      //Terminate Program...?
-      exit(0);
-      //TODO::Implement Dimension MisMatch Error here.
     }
   }
 
@@ -346,5 +347,16 @@ class NMatrix<T> {
       return matrixState;
     }
   }
-//TODO::Create Error Classes? for this Class...?
+}
+
+///DimensionalMisMatchError Class
+class DimensionalMisMatchException implements Exception {
+  ///The [cause] for throwing this exception.
+  String cause;
+
+  ///A Dimensional Mismatch Error.
+  ///
+  /// This constructor conveys the [cause] of a new matrix's dimensions being less than the current matrix's dimensions,
+  /// or the size of a given dimension being less than the others dimension.
+  DimensionalMisMatchException(this.cause);
 }
