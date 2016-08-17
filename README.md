@@ -7,14 +7,6 @@ The goal of the constructs project is to use the existing Dart data structures t
 <hr>
 As of writing, this project's sole focus is on the nth dimensional matrix. However other data structures are being planned out for implementation!
 
-<h2>Installation</h2>
-<hr>
-<h4 style="padding-left:5em;">Step 1: Depend on it</h4>
-in your pubspec.yaml add <span style="background-color: #969696;"> <b><br>dependencies:<br>dart_constructs:</b></span>
-
-<h4 style="padding-left:5em;">Step 2: Get the goods</h4>
-just type <span style="background-color: #969696;"><b>pub get</b></span>
-
 <h2>Author</h2>
 <hr>
 <b>Kyle Ferguson</b> is the sole author of the dart constructs project.
