@@ -248,23 +248,15 @@ class NMatrix<T> {
         } else {
           ///Calcuate how far out of bounds in Dimension k the value is.
           int outOfBounds = dimensionAddress[k] - get.length;
-          //Print Error to console.
-          stderr.writeln(
+          throw new DimensionalMisMatchException(
               "ERROR: Dimension MisMatch at Dimension $k of the NMatrix. Out of Bounds by: $outOfBounds.");
-          //Terminate Program...?
-          exit(0);
-          //TODO::Implement Dimension MisMatch at Dimension k Error here.
         }
       }
     } else {
       ///Gets the difference in D
       int dimDiff = dimensionAddress.length - this._matrixDimension;
-      //Print Error to console.
-      stderr.writeln(
+      throw new DimensionalMisMatchException(
           "ERROR: Dimension MisMatch. NMatrix object does not have same number dimensions as the dimensionsAddress provided. Dimension Dif: $dimDiff.");
-      //Terminate Program...?
-      exit(0);
-      //TODO::Implement Dimension MisMatch Error here.
     }
     return returnVal;
   }
@@ -289,7 +281,6 @@ class NMatrix<T> {
         } else {
           ///Calcuate how far out of bounds in Dimension k the value is.
           int outOfBounds = dimensionAddress[k] - get.length;
-          //TODO::Implement Dimension MisMatch at Dimension k Error here.
           throw new DimensionalMisMatchException(
               "ERROR: Dimension MisMatch at Dimension $k of the NMatrix. Out of Bounds by: $outOfBounds.");
         }
