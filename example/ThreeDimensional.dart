@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../lib/NMatrix.dart';
+import '../lib/dart_constructs.dart';
 
 main() {
   //Here is a Cube with dimensions: 3x3x3 =>

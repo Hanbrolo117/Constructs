@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:core';
-import '../lib/NMatrix.dart';
+import '../lib/dart_constructs.dart';
 void main(){
   Stopwatch watch = new Stopwatch();
   watch.start();

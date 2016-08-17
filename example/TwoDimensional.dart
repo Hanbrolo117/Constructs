@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../lib/NMatrix.dart';
+import '../lib/dart_constructs.dart';
 
 main() {
   //Create a 2x3 matrix:
