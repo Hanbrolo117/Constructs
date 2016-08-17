@@ -1,4 +1,4 @@
-<h1>dart_construct ChangeLog</h1>
+<h1>dart_construct ChangeLog</h1>
 <ul>
 <li>
     <h3>Version 1.0.0 Released</h3>
