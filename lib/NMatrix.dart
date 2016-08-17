@@ -217,6 +217,7 @@ class NMatrix<T> {
   List get dimSizes => this._dimensionSizes;
 
   ///Gets the "core" of the dimensional matrix construct.
+  ///
   ///returns the core of the dimensional matrix construct.
   List get matrix => this._core;
 
