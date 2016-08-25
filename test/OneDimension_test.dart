@@ -14,14 +14,23 @@ void main() {
     stdout.writeln("Failed.");
   }
 
-  //Expansion test:
-  String expectedToString2 = "{{null,1},{null,1},{5,1},{null,1},{null,1}}";
-  oneDim.dimensionalExpansion([5, 2], 1);
-  stdout.writeln(oneDim.toString());
-  String getTest2 = oneDim.toString();
-  if (getTest2 == expectedToString2) {
-    stdout.writeln("Passed.");
-  } else {
-    stdout.writeln("Failed.");
+  try {
+    //Expansion test:
+    String expectedToString2 = "{{null,1},{null,1},{5,1},{null,1},{null,1}}";
+    oneDim.dimensionalExpansion([5, 2], 1);
+    stdout.writeln(oneDim.toString());
+    String getTest2 = oneDim.toString();
+    if (getTest2 == expectedToString2) {
+      stdout.writeln("Passed.");
+    } else {
+      stdout.writeln("Failed.");
+    }
+  } catch (exception) {
+    stdout.writeln("Out of range of Matrix Dimensions.");
+    stdout.writeln("Exception: ${exception.toString()}");
   }
+
+  //An Empty Matrix:
+  oneDim = new NMatrix.dimensional([]);
+  stdout.writeln(oneDim.toString());
 }

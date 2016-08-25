@@ -55,7 +55,11 @@ class NMatrix<T> {
   /// [currentDim] is the current depth of the recursive tree and each dimension k has a size equal to the value at
   /// the kth index of [dimSizes]. Returns the newly created matrix construct.
   List _extrude(int currentDim, int matrixDim, List<int> dimSizes) {
-    //BaseCase:
+    //BaseCase 1:
+    if (dimSizes.length == 0) {
+      return new List();
+    }
+    //BaseCase 2:
     if ((currentDim + 1) == matrixDim) {
       ///This is the last Dimension to Extrude the Matrix by.
       List<T> lastDim = new List<T>(dimSizes[currentDim]);
