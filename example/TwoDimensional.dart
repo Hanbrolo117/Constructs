@@ -4,7 +4,7 @@ import '../lib/dart_constructs.dart';
 main() {
   //Create a 2x3 matrix:
   //------------------------------------------------------------
-  NMatrix<int> twoByThree = new NMatrix.dimensional([2, 3], 1);
+  NMatrix<int> twoByThree = new NMatrix.dimensional([2, 3], initValue: 1);
   //------------------------------------------------------------
 
   //Print Some stuff
@@ -26,7 +26,7 @@ main() {
 
   //Let's create another one with a different type!!
   //------------------------------------------------------------
-  NMatrix<String> twoByThreeS = new NMatrix.dimensional([3, 3], "Hey!");
+  NMatrix<String> twoByThreeS = new NMatrix.dimensional([3, 3], initValue: "Hey!");
   //------------------------------------------------------------
 
   //Print Some stuff

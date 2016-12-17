@@ -20,14 +20,14 @@ class NMatrix<T> {
 //Constructors & Initializers
 //--------------------------------------------------------------------------------
 
-  ///The no-args constructor of an nth dimensional matrix construct.
+  ///The "no-args" constructor of an nth dimensional matrix construct.
   ///
   /// This constructor creates a 10x10 matrix with an initial value of null.
   /// Don't worry you can always expand the size of a matrix construct.
-  NMatrix() {
+  NMatrix({T initValue: null}) {
     this._matrixDimension = 2;
     this._dimensionSizes = [10, 10];
-    this._initValue = null;
+    this._initValue = initValue;
     this._dataPointCount = 0;
     this._core = this._extrude(0, this._matrixDimension, this._dimensionSizes);
   }
@@ -35,11 +35,17 @@ class NMatrix<T> {
   ///Constructor for an nth Dimensional Matrix Construct.
   ///
   /// This Constructor takes in one parameter, that is the [dimensions] which is a list
-  /// of integer representations of the sizes for each of the new dimensions. The length if
+  /// of integer representations of the sizes for each of the new dimensions. The length of
+  /// [dimensions] represents the NUMBER of dimensions the matrix construct has. The last
+  /// parameter is a named optional parameter [initValue] which is the initial value to set
+  /// each value in the matrix construct to.///Constructor for an nth Dimensional Matrix Construct.
+  ///
+  /// This Constructor takes in one parameter, that is the [dimensions] which is a list
+  /// of integer representations of the sizes for each of the new dimensions. The length of
   /// [dimensions] represents the NUMBER of dimensions the matrix construct has. The last
   /// parameter is a named optional parameter [initValue] which is the initial value to set
   /// each value in the matrix construct to.
-  NMatrix.dimensional(List<int> dimensions, [T initValue = null]) {
+  NMatrix.dimensional(List<int> dimensions, {T initValue: null}) {
     this._matrixDimension = dimensions.length;
     this._dimensionSizes = dimensions;
     this._initValue = initValue;
@@ -50,13 +56,13 @@ class NMatrix<T> {
   ///Extrudes Matrix to n dimensions.
   ///
   /// This function is critical to the initialization of the nth Dimensional Matrix Construct.
-  /// It Recursively Constructs all [matrixDim] dimensions of the Matrix setting the value at each position to this initialValue,
-  /// of which unless specified otherwise as a named optional parameter, is by default null., where
+  /// It Recursively Constructs all [matrixDim] dimensions of the Matrix setting the value at each position to this initialValue
+  /// of which, unless specified otherwise as a named optional parameter, is by default null.
   /// [currentDim] is the current depth of the recursive tree and each dimension k has a size equal to the value at
   /// the kth index of [dimSizes]. Returns the newly created matrix construct.
   List _extrude(int currentDim, int matrixDim, List<int> dimSizes) {
     //BaseCase 1:
-    if (dimSizes.length == 0) {
+    if (dimSizes.isEmpty) {
       return new List();
     }
     //BaseCase 2:
@@ -93,8 +99,8 @@ class NMatrix<T> {
   /// "dimensional address" in the new matrix construct. All remaining values in the new matrix construct are set to [initVal].
   /// This algorithm then replaces the core of this object with the new matrix construct. Returns true if expansion was successful,
   /// and false otherwise. Note, to expand a matrix construct, a new matrix's dimensions can only be >= the current number of dimensions.
-  /// Also, for each new dimension to the number of dimensions of the current matrix construct, each dimensions Size can only be >= each of the
-  /// current matrix dimension's sizes. This ensures there is no "shrinking" effect which would cause a loss in data of the current matrix.
+  /// Furthermore, for each dimension in current matrix construct, each dimension's new Size can only be >= each of the current matrix dimension's current sizes. This
+  /// ensures there is no "shrinking" effect which would cause a loss in data of the current matrix.
   /// For instance, {2,2,2} => {2,3,2} | {2,2,2,3} | {2,2,2,1} is valid, but {2,2,2} => {1} | {2,2,1,2} is invalid.
   bool dimensionalExpansion(List<int> dimensionSizes, [T initVal = null]) {
     bool isExpanded = false;
@@ -118,7 +124,7 @@ class NMatrix<T> {
 
         //Extrude the new matrix to the defined number of dimensions.
         NMatrix<T> newNM =
-            new NMatrix.dimensional(dimensionSizes, this._initValue);
+            new NMatrix.dimensional(dimensionSizes, initValue: this._initValue);
 
         ///Used to fetch elements at this address in the matrixPort algorithm.
         List dimensionalAdress = new List(this._dimensionSizes.length);

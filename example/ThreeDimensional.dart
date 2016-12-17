@@ -3,7 +3,7 @@ import '../lib/dart_constructs.dart';
 
 main() {
   //Here is a Cube with dimensions: 3x3x3 =>
-  NMatrix<int> nm3 = new NMatrix.dimensional([3, 3, 3], 5);
+  NMatrix<int> nm3 = new NMatrix.dimensional([3, 3, 3], initValue: 5);
 
   //Let's see what this matrix is made of!
   stdout.writeln();
@@ -26,7 +26,7 @@ main() {
   //The 4th Dimension is so Sugary!
   //A 3x2x2x2 matrix; think 3 2x2x2 cubes!
   stdout.writeln("The 4 dimensional Pi matrix: 3x1x4x1:");
-  NMatrix<double> nm4 = new NMatrix.dimensional([3, 1, 4, 1], 3.14);
+  NMatrix<double> nm4 = new NMatrix.dimensional([3, 1, 4, 1], initValue: 3.14);
 
   stdout.writeln(nm4.toString());
 }

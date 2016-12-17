@@ -2,10 +2,10 @@ import 'dart:io';
 import '../lib/dart_constructs.dart';
 
 void main() {
-  NMatrix<int> intMatrix = new NMatrix.dimensional([2, 2, 2], 1);
+  NMatrix<int> intMatrix = new NMatrix.dimensional([2, 2, 2], initValue: 1);
   NMatrix<String> stringMatrix =
-      new NMatrix.dimensional([1, 1, 1], "I am a 1x1x1 Cube!");
-  NMatrix<double> doubleMatrix = new NMatrix.dimensional([3, 2, 2], 3.14);
+      new NMatrix.dimensional([1, 1, 1], initValue: "I am a 1x1x1 Cube!");
+  NMatrix<double> doubleMatrix = new NMatrix.dimensional([3, 2, 2], initValue: 3.14);
 
   //Testing toString Function
   //--------------------------------------------------------

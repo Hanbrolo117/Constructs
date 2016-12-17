@@ -1,7 +1,11 @@
+import 'dart:collection';
 import 'dart:io';
 import '../lib/dart_constructs.dart';
 
 void main() {
+  HashMap<String, List<String>> O = new HashMap();
+  String x;
+
   NMatrix<int> oneDim = new NMatrix.dimensional([5]);
   oneDim.set([2], 5);
   String expectedToString = "{null,null,5,null,null}";
