@@ -1,4 +1,7 @@
 <h1>Constructs Project</h1>
+<br>
+<img src="dart_constructs_logo.png"/>
+<br>
 <h2>The Goal</h2>
 <hr>
 The goal of the constructs project is to use the existing Dart data structures to build more complex data structures (and thus constructs) that are not in the Dart language. This will hopefully help out Dart Devs who need extra data structures with it's own methods already implemented.
