@@ -49,7 +49,7 @@ Future main() async {
 Stopwatch createMatrixTest() {
   Stopwatch watch = new Stopwatch();
   watch.start();
-  NMatrix<int> nm3d = new NMatrix.dimensional([20000, 20000], initValue: 50);
+  NMatrix<int> nm2d = new NMatrix.dimensional([20000, 20000], initValue: 50);
   watch.stop();
   return watch;
 }

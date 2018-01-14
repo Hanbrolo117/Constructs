@@ -1,4 +1,9 @@
 <h1>dart_construct ChangeLog</h1>
+<h3>Version 1.1.3 Released</h3>
+<hr>
+<ul>
+<li>Removed unnecessary dependency on the dart:io library</li>
+</ul>
 <h3>Version 1.1.2 Released</h3>
 <hr>
 <ul>
