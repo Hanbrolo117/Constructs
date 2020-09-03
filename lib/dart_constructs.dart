@@ -1,3 +1,3 @@
 library dart_constructs;
 
-part 'n_matrix.dart';
+export 'src/n_matrix.dart';
